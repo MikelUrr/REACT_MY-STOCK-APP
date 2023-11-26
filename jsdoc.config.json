@@ -1,0 +1,13 @@
+{
+    "source": {
+      "include": ["src/components"], 
+      "exclude": ["node_modules", "dist"] 
+    },
+    "opts": {
+      "destination": "docs" 
+    },
+    "template": {
+      "format": "html",
+      "theme": "cerulean"
+    }
+  }

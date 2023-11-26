@@ -1,4 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Source: CreateUser.jsx</title>
 
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+
+    <h1 class="page-title">Source: CreateUser.jsx</h1>
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>
 import React, { useState } from 'react';
 import { v4 as uuidv4 } from 'uuid';
 
@@ -10,16 +38,13 @@ import { v4 as uuidv4 } from 'uuid';
  * @param {string} props.name - Nombre del usuario.
  * @param {Array} props.commodities - Lista de commodities seleccionadas.
  * @param {function} props.onCreateUser - Función llamada al crear un nuevo usuario.
- * @param {function} props.redirectToHome - Función para redirigir a la página principal.
  */
-const CreateUser = ({ onCreateUser , redirectToHome}) => {
-    const [successMessage, setSuccessMessage] = useState('');
-
+const CreateUser = ({ onCreateUser }) => {
     /**
      * Estado del formulario.
      * @type {Object}
      * @property {string} name - Nombre del usuario.
-     * @property {Array<Object>} commodities - Lista de commodities seleccionadas.
+     * @property {Array&lt;Object>} commodities - Lista de commodities seleccionadas.
      */
     const [formData, setFormData] = useState({
       name: '',
@@ -54,7 +79,7 @@ const CreateUser = ({ onCreateUser , redirectToHome}) => {
      * Maneja la adición de una commodity.
      */
     const handleAddCommodity = () => {
-      if (selectedCommodity && !formData.commodities.includes(selectedCommodity)) {
+      if (selectedCommodity &amp;&amp; !formData.commodities.includes(selectedCommodity)) {
         setFormData((prevData) => ({
           ...prevData,
           commodities: [
@@ -102,11 +127,6 @@ const CreateUser = ({ onCreateUser , redirectToHome}) => {
           name: '',
           commodities: [],
         });
-        setSuccessMessage('Usuario creado correctamente');
-        setTimeout(() => {
-          
-            redirectToHome();
-          }, 2000);
       }
     };
   
@@ -115,15 +135,14 @@ const CreateUser = ({ onCreateUser , redirectToHome}) => {
      * @returns {boolean} - `true` si el formulario es válido, `false` de lo contrario.
      */
     const validateForm = () => {
-      return formData.name && formData.commodities.length > 0;
+      return formData.name &amp;&amp; formData.commodities.length > 0;
     };
   return (
-    <div>
-      <h2>Crear Nuevo Usuario</h2>
-      {successMessage && <p style={{ color: 'green' }}>{successMessage}</p>}
-      <form onSubmit={handleSubmit}>
-        <label htmlFor="name">Nombre:</label>
-        <input
+    &lt;div>
+      &lt;h2>Crear Nuevo Usuario&lt;/h2>
+      &lt;form onSubmit={handleSubmit}>
+        &lt;label htmlFor="name">Nombre:&lt;/label>
+        &lt;input
           type="text"
           id="name"
           name="name"
@@ -132,57 +151,80 @@ const CreateUser = ({ onCreateUser , redirectToHome}) => {
           required
         />
 
-        <label>Commodities:</label>
-        <div>
-          <select
+        &lt;label>Commodities:&lt;/label>
+        &lt;div>
+          &lt;select
             value={selectedCommodity}
             onChange={(e) => setSelectedCommodity(e.target.value)}
             
           >
-            <option value="">Seleccionar Commodity</option>
-            <option value="WTI"> Oil: West Texas Intermediate (WTI) </option>
-            <option value="BRENT">Oil: Brent (Europe)</option>
-            <option value="NATURAL_GAS">Natural Gas</option>
-            <option value="COPPER">Copper</option>
-            <option value="ALUMINUM">Aluminum</option>
-            <option value="WHEAT">Wheat</option>
-            <option value="CORN">Corn</option>
-            <option value="COTTON">Cotton</option>
-            <option value="SUGAR">Sugar</option>
-            <option value="COFFEE">Coffee</option>
-          </select>
-          <input
+            &lt;option value="">Seleccionar Commodity&lt;/option>
+            &lt;option value="WTI"> Oil: West Texas Intermediate (WTI) &lt;/option>
+            &lt;option value="BRENT">Oil: Brent (Europe)&lt;/option>
+            &lt;option value="NATURAL_GAS">Natural Gas&lt;/option>
+            &lt;option value="COPPER">Copper&lt;/option>
+            &lt;option value="ALUMINUM">Aluminum&lt;/option>
+            &lt;option value="WHEAT">Wheat&lt;/option>
+            &lt;option value="CORN">Corn&lt;/option>
+            &lt;option value="COTTON">Cotton&lt;/option>
+            &lt;option value="SUGAR">Sugar&lt;/option>
+            &lt;option value="COFFEE">Coffee&lt;/option>
+          &lt;/select>
+          &lt;input
             type="number"
             value={commodityQuantity}
             onChange={(e) => setCommodityQuantity(e.target.value)}
             min="1"
           />
-          <button type="button" onClick={handleAddCommodity}>
+          &lt;button type="button" onClick={handleAddCommodity}>
             Agregar Commodity
-          </button>
-        </div>
+          &lt;/button>
+        &lt;/div>
 
-        <div>
-          <h3>Commodities Seleccionadas:</h3>
-          <ul>
+        &lt;div>
+          &lt;h3>Commodities Seleccionadas:&lt;/h3>
+          &lt;ul>
             {formData.commodities.map((commodity, index) => (
-              <li key={index}>
+              &lt;li key={index}>
                 {commodity.name} - Cantidad: {commodity.quantity}
-                <button
+                &lt;button
                   type="button"
                   onClick={() => handleRemoveCommodity(commodity.name)}
                 >
                   Eliminar
-                </button>
-              </li>
+                &lt;/button>
+              &lt;/li>
             ))}
-          </ul>
-        </div>
+          &lt;/ul>
+        &lt;/div>
 
-        <button type="submit">Crear Usuario</button>
-      </form>
-    </div>
+        &lt;button type="submit">Crear Usuario&lt;/button>
+      &lt;/form>
+    &lt;/div>
   );
 };
 
 export default CreateUser;
+</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Global</h3><ul><li><a href="global.html#CreateUser">CreateUser</a></li></ul>
+</nav>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 4.0.2</a> on Sat Nov 25 2023 12:14:27 GMT+0100 (hora estándar de Europa central)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>
